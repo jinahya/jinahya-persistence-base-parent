@@ -61,3 +61,5 @@ njinahya-persistence-base-tests/src/main/java/com/github/jinahya/persistence/_Ma
 \jinahya-persistence-base-tests/src/test/java/com/github/jinahya/persistence/BaseEntity1.java,b/d/bd971ba8dad8ebb14a9588e69ea742e038b7359d
 
 `jinahya-persistence-base-tests/src/test/java/com/github/jinahya/persistence/BaseEntity1Test.java,f/7/f7118e9502b8e60c72caa2d02246d52dcfa00d4e
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
