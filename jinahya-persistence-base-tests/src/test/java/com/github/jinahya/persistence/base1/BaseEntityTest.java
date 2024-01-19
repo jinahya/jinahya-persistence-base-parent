@@ -1,5 +1,8 @@
-package com.github.jinahya.persistence;
+package com.github.jinahya.persistence.base1;
 
+import com.github.jinahya.persistence._MappedEntity;
+import com.github.jinahya.persistence._MappedEntityDynamicTests;
+import com.github.jinahya.persistence._MappedIdentifiableEntityTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -10,10 +13,10 @@ import java.util.stream.Stream;
 @SuppressWarnings({
         "java:S2699"
 })
-abstract class BaseEntity1Test<E extends BaseEntity1>
+abstract class BaseEntityTest<E extends BaseEntity>
         extends _MappedIdentifiableEntityTest<E, Long> {
 
-    BaseEntity1Test(final Class<E> entityClass) {
+    protected BaseEntityTest(final Class<E> entityClass) {
         super(entityClass);
     }
 
@@ -29,7 +32,7 @@ abstract class BaseEntity1Test<E extends BaseEntity1>
         return _MappedEntityDynamicTests.accessorsShouldReturn(
                 entityClass,
                 this::newEntityInstance,
-                (d, m) -> __MappedEntity.class.isAssignableFrom(m.getDeclaringClass())
+                (d, m) -> _MappedEntity.class.isAssignableFrom(m.getDeclaringClass())
         );
     }
 }

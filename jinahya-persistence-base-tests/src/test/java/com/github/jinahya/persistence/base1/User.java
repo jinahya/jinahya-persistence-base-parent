@@ -1,4 +1,4 @@
-package com.github.jinahya.persistence;
+package com.github.jinahya.persistence.base1;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -13,8 +13,8 @@ import java.io.Serial;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Setter
 @Getter
-class BaseUser1
-        extends BaseEntity1 {
+class User
+        extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 3248125066407302146L;

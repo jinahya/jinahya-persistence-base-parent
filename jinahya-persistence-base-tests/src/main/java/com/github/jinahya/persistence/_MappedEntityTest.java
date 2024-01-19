@@ -1,7 +1,5 @@
 package com.github.jinahya.persistence;
 
-import com.github.jinahya.persistence._MappedEntity;
-
 import java.util.Objects;
 
 /**
@@ -37,7 +35,11 @@ public abstract class _MappedEntityTest<E extends _MappedEntity> {
      */
     protected E newEntityInstance() {
         try {
-            return entityClass.getDeclaredConstructor().newInstance();
+            final var constructor = entityClass.getDeclaredConstructor();
+            if (!constructor.canAccess(null)) {
+                constructor.setAccessible(true);
+            }
+            return constructor.newInstance();
         } catch (final ReflectiveOperationException roe) {
             throw new RuntimeException("failed to create a new instance of " + entityClass, roe);
         }

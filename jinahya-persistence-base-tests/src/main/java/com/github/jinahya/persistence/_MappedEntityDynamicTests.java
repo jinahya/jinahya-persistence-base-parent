@@ -23,8 +23,8 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 })
 public final class _MappedEntityDynamicTests {
 
-    public static <E extends _MappedEntity> DynamicTest toStringShouldNotBlank(final Class<E> entityClass,
-                                                                               final Supplier<? extends E> initializer) {
+    public static <E extends _MappedEntity> DynamicTest toStringShouldNotBlank(
+            final Class<E> entityClass, final Supplier<? extends E> initializer) {
         Objects.requireNonNull(entityClass, "entityClass is null");
         Objects.requireNonNull(initializer, "initializer is null");
         final E instance = initializer.get();

@@ -18,7 +18,7 @@ abstract class __MappedEntity
     /**
      * Creates a new instance.
      */
-    protected __MappedEntity() {
+    __MappedEntity() {
         super();
     }
 }
