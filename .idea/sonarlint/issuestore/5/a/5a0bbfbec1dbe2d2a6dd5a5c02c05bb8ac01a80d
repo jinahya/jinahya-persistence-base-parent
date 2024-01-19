@@ -1,0 +1,9 @@
+
+W
+java:S1854!"<Remove this useless assignment to local variable "instance".(†Ú¡úÿÿÿÿ
+\
+java:S1161":Add the "@Override" annotation above this method signature(ëç­Ãùÿÿÿÿ8ĞëâŠÒ1
+H
+java:S1481!"-Remove this unused "instance" local variable.(†Ú¡úÿÿÿÿ
+F
+java:S5960%"+Remove this assertion from production code.(à¾…Óøÿÿÿÿ
