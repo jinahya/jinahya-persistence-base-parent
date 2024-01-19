@@ -1,7 +1,5 @@
 package com.github.jinahya.persistence;
 
-@SuppressWarnings({
-})
 public final class _MappedIdentifiableEntityDynamicTests {
 
     private _MappedIdentifiableEntityDynamicTests() {

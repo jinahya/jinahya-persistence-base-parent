@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 @Slf4j
 @SuppressWarnings({
-//        "java:S101"
+        "java:S101", // class _Mapped...
         "java:S5960"
 })
 public final class _MappedEntityDynamicTests {
