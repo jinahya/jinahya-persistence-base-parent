@@ -14,10 +14,13 @@ import java.io.Serial;
 abstract class BaseEntity
         extends _MappedIdentifiableEntity<Long> {
 
-    static final String COLUMN_NAME_ID = "id";
-
     @Serial
     private static final long serialVersionUID = -6008001217711482817L;
+
+    // -------------------------------------------------------------------------------------------------------------- id
+    static final String COLUMN_NAME_ID = "id";
+
+    static final String ATTRIBUTE_NAME_ID = "id";
 
     // -------------------------------------------------------------------------------------------------------------- id
     @Override

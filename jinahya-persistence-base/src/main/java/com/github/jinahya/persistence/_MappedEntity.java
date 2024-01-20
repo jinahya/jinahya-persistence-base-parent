@@ -1,10 +1,13 @@
 package com.github.jinahya.persistence;
 
 import jakarta.persistence.MappedSuperclass;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 
 @MappedSuperclass
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @SuppressWarnings({
         "java:S101"
 })
@@ -14,22 +17,10 @@ public abstract class _MappedEntity
     @Serial
     private static final long serialVersionUID = -7175867556249812326L;
 
-    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
-    /**
-     * Creates a new instance.
-     */
-    protected _MappedEntity() {
-        super();
-    }
-
     // ------------------------------------------------------------------------------------------------ java.lang.Object
-//    @Override
-//    public boolean equals(final Object obj) {
-//        return super.equals(obj);
-//    }
-
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        final var hashCode = getClass().hashCode();
+        return hashCode;
     }
 }

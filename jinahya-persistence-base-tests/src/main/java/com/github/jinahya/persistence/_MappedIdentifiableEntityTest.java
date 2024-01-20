@@ -27,7 +27,7 @@ public abstract class _MappedIdentifiableEntityTest<E extends _MappedIdentifiabl
     }
 
     // -------------------------------------------------------------------------------------------------------------- id
-    @DisplayName("getId() should return")
+    @DisplayName("getId() should return normally")
     @Test
     protected void getId_DoesNotThrows_() {
         final var instance = newEntityInstance();
@@ -36,7 +36,7 @@ public abstract class _MappedIdentifiableEntityTest<E extends _MappedIdentifiabl
 
     // --------------------------------------------------------------------------------------------------------- idClass
 
-    @DisplayName("getIdClass() does not throw")
+    @DisplayName("getIdClass() should return normally")
     @Test
     protected void getIdClass_DoesNotThrow_() {
         assertThatCode(this::getIdClass).doesNotThrowAnyException();

@@ -20,9 +20,13 @@ public abstract class _MappedEntityTest<E extends _MappedEntity> extends __Mappe
         this.entityClass = mappedClass;
     }
 
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+
+    // ----------------------------------------------------------------------------------------------------- entityClass
     protected E newEntityInstance() {
         return newMappedInstance();
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
     protected final Class<E> entityClass;
 }

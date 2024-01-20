@@ -6,4 +6,5 @@ class UserTest
     UserTest() {
         super(User.class);
     }
+
 }
