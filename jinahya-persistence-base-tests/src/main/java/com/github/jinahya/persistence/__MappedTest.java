@@ -1,5 +1,10 @@
 package com.github.jinahya.persistence;
 
+import nl.jqno.equalsverifier.ConfiguredEqualsVerifier;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
+import org.junit.jupiter.api.Test;
+
 import java.util.Objects;
 
 abstract class __MappedTest<M extends __Mapped> {
@@ -9,6 +14,23 @@ abstract class __MappedTest<M extends __Mapped> {
         this.mappedClass = Objects.requireNonNull(mappedClass, "mappedClass is null");
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    @Test
+    protected void equalsContract() {
+        equalsVerifier(
+                equalsVerifier().forClass(mappedClass)
+        ).verify();
+    }
+
+    protected ConfiguredEqualsVerifier equalsVerifier() {
+        return EqualsVerifier.simple();
+    }
+
+    protected SingleTypeEqualsVerifierApi<M> equalsVerifier(final SingleTypeEqualsVerifierApi<M> equalsVerifier) {
+        return equalsVerifier;
+    }
+
+    // ----------------------------------------------------------------------------------------------------- mappedClass
     final M newMappedInstance() {
         try {
             final var constructor = mappedClass.getDeclaredConstructor();
@@ -21,5 +43,6 @@ abstract class __MappedTest<M extends __Mapped> {
         }
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
     final Class<M> mappedClass;
 }

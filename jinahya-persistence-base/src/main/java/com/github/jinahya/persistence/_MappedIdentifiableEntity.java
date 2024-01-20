@@ -18,11 +18,21 @@ public abstract class _MappedIdentifiableEntity<ID extends Serializable>
     @Serial
     private static final long serialVersionUID = 3712559723307026683L;
 
+    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+
     /**
      * Creates a new instance.
      */
     protected _MappedIdentifiableEntity() {
         super();
+    }
+
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    @Override
+    public String toString() {
+        return super.toString() + '{' +
+                "id=" + getId() +
+                '}';
     }
 
     @Override

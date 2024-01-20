@@ -17,14 +17,4 @@ public abstract class _MappedEmbeddable
     protected _MappedEmbeddable() {
         super();
     }
-
-//    @Override
-//    public boolean equals(final Object obj) {
-//        return super.equals(obj);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return getClass().hashCode();
-//    }
 }

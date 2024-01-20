@@ -14,6 +14,7 @@ public abstract class _MappedEntity
     @Serial
     private static final long serialVersionUID = -7175867556249812326L;
 
+    // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
     /**
      * Creates a new instance.
      */
@@ -21,10 +22,11 @@ public abstract class _MappedEntity
         super();
     }
 
-    @Override
-    public boolean equals(final Object obj) {
-        return super.equals(obj);
-    }
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+//    @Override
+//    public boolean equals(final Object obj) {
+//        return super.equals(obj);
+//    }
 
     @Override
     public int hashCode() {

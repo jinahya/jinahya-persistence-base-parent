@@ -19,6 +19,15 @@ class User
     @Serial
     private static final long serialVersionUID = 3248125066407302146L;
 
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    @Override
+    public String toString() {
+        return super.toString() + '{' +
+                "name=" + name +
+                '}';
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
     @NotBlank
     @Basic(optional = false)
     @Column(name = "name", nullable = false, insertable = true, updatable = true)

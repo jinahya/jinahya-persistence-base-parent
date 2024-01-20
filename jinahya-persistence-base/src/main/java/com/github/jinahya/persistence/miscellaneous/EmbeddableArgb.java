@@ -1,7 +1,7 @@
 package com.github.jinahya.persistence.miscellaneous;
 
-import jakarta.persistence.*;
-import jakarta.validation.Valid;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.*;
@@ -33,31 +33,6 @@ public abstract class EmbeddableArgb extends EmbeddableColor {
         public static final String COLUMN_NAME_GREEN = "green";
 
         public static final String COLUMN_NAME_BLUE = "blue";
-
-        @Override
-        public String toString() {
-            return super.toString() + '{' +
-                    "alpha=" + alpha +
-                    ",red=" + red +
-                    ",green=" + green +
-                    ",blue=" + blue +
-                    '}';
-        }
-
-        @Override
-        public boolean equals(final Object obj) {
-            if (this == obj) return true;
-            if (!(obj instanceof Populated populated)) return false;
-            return alpha == populated.alpha
-                    && red == populated.red
-                    && green == populated.green
-                    && blue == populated.blue;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(alpha, red, green, blue);
-        }
 
         // ------------------------------------------------------------------------------------------------------- alpha
         @Override
@@ -122,85 +97,61 @@ public abstract class EmbeddableArgb extends EmbeddableColor {
         // ------------------------------------------------------------------------------------------------ CONSTRUCTORS
 
         // -------------------------------------------------------------------------------------------- java.lang.Object
-        @Override
-        public String toString() {
-            return super.toString() + '{' +
-                    "populated=" + populated +
-                    '}';
-        }
-
-        @Override
-        public boolean equals(final Object obj) {
-            if (this == obj) return true;
-            if (!(obj instanceof Unpopulated that)) return false;
-            return Objects.equals(populated, that.populated);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(populated);
-        }
 
         // ----------------------------------------------------------------------------------------- jakarta.persistence
-        @PrePersist
-        @PreUpdate
-        private void unpopulate() {
-            argb = populated.getArgb();
-        }
-
-        @PostLoad
-        private void populate() {
-            populated.setAlpha(argb);
-        }
+//        @PrePersist
+//        @PreUpdate
+//        private void unpopulate() {
+//            argb = populated.getArgb();
+//        }
+//
+//        @PostLoad
+//        private void populate() {
+//            populated.setAlpha(argb);
+//        }
 
         // ------------------------------------------------------------------------------------------------------- alpha
         @Override
         public int getAlpha() {
-//            return (getArgb() >> SHIFT_ALPHA) & MASK_COMPONENT;
-            return populated.getAlpha();
+            return getArgb() >>> 24;
         }
 
         @Override
         public void setAlpha(final int alpha) {
-//            setArgb((getArgb() & ~MASK_ALPHA) | ((alpha & MASK_COMPONENT) << SHIFT_ALPHA));
-            populated.setAlpha(alpha);
+            setArgb((getArgb() & 0x00FFFFFF) | ((alpha & 0xFF) << 24));
         }
 
         // --------------------------------------------------------------------------------------------------------- red
         @Override
         public int getRed() {
-//            return (getArgb() >> SHIFT_RED) & MASK_COMPONENT;
-            return populated.getRed();
+            return (getArgb() >> 16) & 0xFF;
         }
 
         @Override
         public void setRed(final int red) {
-//            setArgb((getArgb() & ~MASK_RED) | ((red & MASK_COMPONENT) << SHIFT_RED));
-            populated.setRed(red);
+            setArgb((getArgb() & 0xFF00FFFF) | ((red & 0xFF) << 16));
         }
 
+        // ------------------------------------------------------------------------------------------------------- green
         @Override
         public int getGreen() {
-//            return (getArgb() & MASK_GREEN) >> SHIFT_GREEN;
-            return populated.getGreen();
+            return (getArgb() >> 8) & 0xFF;
         }
 
         @Override
         public void setGreen(final int green) {
-//            setArgb((getArgb() & ~MASK_GREEN) | ((green & MASK_COMPONENT) << SHIFT_GREEN));
-            populated.setGreen(green);
+            setArgb((getArgb() & 0xFFFF00FF) | ((green & 0xFF) << 8));
         }
 
+        // -------------------------------------------------------------------------------------------------------- blue
         @Override
         public int getBlue() {
-//            return (getArgb() & MASK_BLUE) >> SHIFT_BLUE;
-            return populated.getBlue();
+            return getArgb() & 0xFF;
         }
 
         @Override
         public void setBlue(final int blue) {
-//            setArgb((getArgb() & ~MASK_BLUE) | (blue & MASK_COMPONENT) << SHIFT_BLUE);
-            populated.setBlue(blue);
+            setArgb((getArgb() & 0xFFFFFF00) | (blue & 0xFF));
         }
 
         // --------------------------------------------------------------------------------------------------- populated
@@ -208,23 +159,15 @@ public abstract class EmbeddableArgb extends EmbeddableColor {
         // -------------------------------------------------------------------------------------------------------- argb
         @Override
         public int getArgb() {
-            unpopulate();
             return argb;
         }
 
         @Override
         public void setArgb(final int argb) {
             this.argb = argb;
-            populate();
         }
 
         // -------------------------------------------------------------------------------------------------------------
-        @Valid
-        @Transient
-        @Setter(AccessLevel.NONE)
-        @Getter(AccessLevel.NONE)
-        private final Populated populated = new Populated();
-
         @Basic(optional = true)
         @Column(name = COLUMN_NAME_ARGB, nullable = true, insertable = true, updatable = true)
         @EqualsAndHashCode.Exclude
@@ -233,6 +176,32 @@ public abstract class EmbeddableArgb extends EmbeddableColor {
     }
 
     // ---------------------------------------------------------------------------------------------------- CONSTRUCTORS
+
+    // ------------------------------------------------------------------------------------------------ java.lang.Object
+    @Override
+    public final String toString() {
+        return super.toString() + '{' +
+                "alpha=" + getAlpha() +
+                "red=" + getRed() +
+                "green=" + getGreen() +
+                "blue=" + getBlue() +
+                '}';
+    }
+
+    @Override
+    public final boolean equals(final Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof EmbeddableArgb that)) return false;
+        return getAlpha() == that.getAlpha() &&
+                getRed() == that.getRed() &&
+                getGreen() == that.getGreen() &&
+                getBlue() == that.getBlue();
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(getAlpha(), getRed(), getGreen(), getBlue());
+    }
 
     // ------------------------------------------------------------------------------------------------------------ argb
     public int getArgb() {

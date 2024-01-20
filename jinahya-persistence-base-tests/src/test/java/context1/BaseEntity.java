@@ -19,11 +19,13 @@ abstract class BaseEntity
     @Serial
     private static final long serialVersionUID = -6008001217711482817L;
 
+    // -------------------------------------------------------------------------------------------------------------- id
     @Override
     protected Long getId() {
         return id;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = COLUMN_NAME_ID, nullable = false, insertable = false, updatable = false)
