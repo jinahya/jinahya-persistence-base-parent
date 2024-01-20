@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -15,7 +14,6 @@
 
   <name>${project.artifactId}</name>
   <url>https://github.com/jinahya/{@project.artifactId}</url>
-
 
   <scm>
     <connection>scm:git:git@github.com:jinahya/${project.artifactId}.git</connection>
@@ -33,7 +31,6 @@
     <maven.compiler.testRelease>${maven.compiler.testTarget}</maven.compiler.testRelease>
     <version.com.google.guava>32.1.2-jre</version.com.google.guava>
     <version.jakarta.persistence-api>3.2.0-M1</version.jakarta.persistence-api>
-    <version.nl.jqno.equalsverifier>3.15.2</version.nl.jqno.equalsverifier>
     <version.org.junit.jupiter>5.10.0</version.org.junit.jupiter>
     <version.org.mockito>5.5.0
     </version.org.mockito> <!-- https://search.maven.org/artifact/org.mockito/mockito-junit-jupiter -->
@@ -108,7 +105,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier-nodep</artifactId>
-      <version>${version.nl.jqno.equalsverifier}</version>
+      <version>3.15.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -120,6 +117,11 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jeasy</groupId>
+      <artifactId>easy-random-bean-validation</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -147,13 +149,13 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>uk.co.jemos.podam</groupId>
+      <artifactId>podam</artifactId>
       <scope>compile</scope>
     </dependency>
   </dependencies>
@@ -315,9 +317,13 @@
       </plugin>
     </plugins>
   </reporting>
+
   <profiles>
     <profile>
       <id>jakarta-persistence-3.2.0</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <version.jakarta.persistence-api>3.2.0-M1</version.jakarta.persistence-api>
       </properties>

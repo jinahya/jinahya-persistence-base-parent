@@ -1,4 +1,4 @@
-package com.github.jinahya.persistence.base1;
+package context1;
 
 import com.github.jinahya.persistence._MappedEntity;
 import com.github.jinahya.persistence._MappedEntityDynamicTests;
@@ -23,13 +23,13 @@ abstract class BaseEntityTest<E extends BaseEntity>
     @DisplayName("toString() should not blank")
     @TestFactory
     DynamicTest _NotBlank_ToString() {
-        return _MappedEntityDynamicTests.toStringShouldNotBlank(entityClass, this::newEntityInstance);
+        return _MappedEntityDynamicTests.toString_NonBlank_(entityClass, this::newEntityInstance);
     }
 
     @DisplayName("accessors should return")
     @TestFactory
     Stream<DynamicTest> _shouldReturn_Accessors() throws IntrospectionException {
-        return _MappedEntityDynamicTests.accessorsShouldReturn(
+        return _MappedEntityDynamicTests.accessors_DoesNothrow_(
                 entityClass,
                 this::newEntityInstance,
                 (d, m) -> _MappedEntity.class.isAssignableFrom(m.getDeclaringClass())

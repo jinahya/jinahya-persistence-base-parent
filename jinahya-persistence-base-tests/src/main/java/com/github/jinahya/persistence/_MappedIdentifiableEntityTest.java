@@ -1,12 +1,20 @@
 package com.github.jinahya.persistence;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
+
+@Slf4j
 @SuppressWarnings({
+        "java:S100", // ..._()
         "java:S119"
 })
-public abstract class _MappedIdentifiableEntityTest<E extends _MappedIdentifiableEntity<Id>, Id extends Serializable>
+public abstract class _MappedIdentifiableEntityTest<E extends _MappedIdentifiableEntity<ID>, ID extends Serializable>
         extends _MappedEntityTest<E> {
 
     /**
@@ -18,29 +26,50 @@ public abstract class _MappedIdentifiableEntityTest<E extends _MappedIdentifiabl
         super(entityClass);
     }
 
+    // -------------------------------------------------------------------------------------------------------------- id
+    @DisplayName("getId() should return")
+    @Test
+    protected void getId_DoesNotThrows_() {
+        final var instance = newEntityInstance();
+        assertThatCode(instance::getId).doesNotThrowAnyException();
+    }
+
+    // --------------------------------------------------------------------------------------------------------- idClass
+
+    @DisplayName("getIdClass() does not throw")
+    @Test
+    protected void getIdClass_DoesNotThrow_() {
+        assertThatCode(this::getIdClass).doesNotThrowAnyException();
+    }
+
     /**
-     * Returns the id class of the {@link #entityClass}.
+     * Returns the {@link ID} class of the {@link #entityClass}.
      *
-     * @return the id class of the {@link #entityClass}.
+     * @return the {@link ID} class of the {@link #entityClass}.
      */
     @SuppressWarnings({"unchecked"})
-    protected Class<Id> getIdClass() {
+    protected Class<ID> getIdClass() {
         if (idClass != null) {
             return idClass;
         }
-        for (Class<?> c = entityClass; c != null; c = c.getSuperclass()) {
+        for (Class<?> c = mappedClass; c != null; c = c.getSuperclass()) {
             final var genericSuperclass = c.getGenericSuperclass();
-            if (genericSuperclass != _MappedIdentifiableEntity.class) {
+            if (!(genericSuperclass instanceof ParameterizedType parameterizedType)) {
                 continue;
             }
-            idClass = (Class<Id>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
-            return idClass;
+            if (parameterizedType.getRawType() != _MappedIdentifiableEntity.class) {
+                continue;
+            }
+            idClass = (Class<ID>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
+            return getIdClass();
         }
         throw new RuntimeException("unable to find the idClass");
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+
     /**
-     * The id class of the {@link #entityClass}.
+     * The id class of the {@link #mappedClass}.
      */
-    private Class<Id> idClass;
+    private Class<ID> idClass;
 }

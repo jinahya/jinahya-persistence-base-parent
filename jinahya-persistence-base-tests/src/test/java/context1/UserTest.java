@@ -1,4 +1,4 @@
-package com.github.jinahya.persistence.base1;
+package context1;
 
 class UserTest
         extends BaseEntityTest<User> {

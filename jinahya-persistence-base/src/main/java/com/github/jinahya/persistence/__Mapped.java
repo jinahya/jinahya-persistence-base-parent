@@ -9,7 +9,7 @@ import java.io.Serializable;
 @SuppressWarnings({
         "java:S101"
 })
-abstract class __MappedEntity
+abstract class __Mapped
         implements Serializable {
 
     @Serial
@@ -18,7 +18,7 @@ abstract class __MappedEntity
     /**
      * Creates a new instance.
      */
-    __MappedEntity() {
+    __Mapped() {
         super();
     }
 }

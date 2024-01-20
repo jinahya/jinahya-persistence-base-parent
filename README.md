@@ -2,4 +2,4 @@
 
 ## jinahya-persistence-base
 
-## jinahya-persisetnce-base-tests
+## jinahya-persistence-base-tests

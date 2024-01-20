@@ -12,7 +12,7 @@ import java.util.Objects;
         "java:S101",
         "java:S119"
 })
-public abstract class _MappedIdentifiableEntity<Id extends Serializable>
+public abstract class _MappedIdentifiableEntity<ID extends Serializable>
         extends _MappedEntity {
 
     @Serial
@@ -36,7 +36,7 @@ public abstract class _MappedIdentifiableEntity<Id extends Serializable>
         if (!super.equals(obj)) {
             return false;
         }
-        final Id id = getId();
+        final ID id = getId();
         return id != null && Objects.equals(id, that.getId());
     }
 
@@ -46,10 +46,10 @@ public abstract class _MappedIdentifiableEntity<Id extends Serializable>
     }
 
     /**
-     * Returns current value of {@link Id} attribute.
+     * Returns current value of {@link ID} attribute.
      *
-     * @return current value of the {@link Id} attribute.
+     * @return current value of the {@link ID} attribute.
      */
     @Nullable
-    protected abstract Id getId();
+    protected abstract ID getId();
 }

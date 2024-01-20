@@ -1,4 +1,4 @@
-package com.github.jinahya.persistence.base1;
+package context1;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;

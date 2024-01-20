@@ -3,14 +3,13 @@ package com.github.jinahya.persistence;
 import jakarta.persistence.MappedSuperclass;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 @MappedSuperclass
 @SuppressWarnings({
         "java:S101"
 })
 public abstract class _MappedEntity
-        extends __MappedEntity {
+        extends __Mapped {
 
     @Serial
     private static final long serialVersionUID = -7175867556249812326L;

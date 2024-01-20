@@ -1,4 +1,4 @@
-package com.github.jinahya.persistence.base1;
+package context1;
 
 import com.github.jinahya.persistence._MappedIdentifiableEntity;
 import jakarta.persistence.Column;
